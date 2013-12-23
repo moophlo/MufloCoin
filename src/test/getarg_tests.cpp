@@ -25,143 +25,143 @@ ResetArgs(const std::string& strArg)
 
 BOOST_AUTO_TEST_CASE(boolarg)
 {
-    ResetArgs("-BAR");
-    BOOST_CHECK(GetBoolArg("-BAR"));
-    BOOST_CHECK(GetBoolArg("-BAR", false));
-    BOOST_CHECK(GetBoolArg("-BAR", true));
+    ResetArgs("-MFC");
+    BOOST_CHECK(GetBoolArg("-MFC"));
+    BOOST_CHECK(GetBoolArg("-MFC", false));
+    BOOST_CHECK(GetBoolArg("-MFC", true));
 
     BOOST_CHECK(!GetBoolArg("-fo"));
     BOOST_CHECK(!GetBoolArg("-fo", false));
     BOOST_CHECK(GetBoolArg("-fo", true));
 
-    BOOST_CHECK(!GetBoolArg("-BARo"));
-    BOOST_CHECK(!GetBoolArg("-BARo", false));
-    BOOST_CHECK(GetBoolArg("-BARo", true));
+    BOOST_CHECK(!GetBoolArg("-MFCo"));
+    BOOST_CHECK(!GetBoolArg("-MFCo", false));
+    BOOST_CHECK(GetBoolArg("-MFCo", true));
 
-    ResetArgs("-BAR=0");
-    BOOST_CHECK(!GetBoolArg("-BAR"));
-    BOOST_CHECK(!GetBoolArg("-BAR", false));
-    BOOST_CHECK(!GetBoolArg("-BAR", true));
+    ResetArgs("-MFC=0");
+    BOOST_CHECK(!GetBoolArg("-MFC"));
+    BOOST_CHECK(!GetBoolArg("-MFC", false));
+    BOOST_CHECK(!GetBoolArg("-MFC", true));
 
-    ResetArgs("-BAR=1");
-    BOOST_CHECK(GetBoolArg("-BAR"));
-    BOOST_CHECK(GetBoolArg("-BAR", false));
-    BOOST_CHECK(GetBoolArg("-BAR", true));
+    ResetArgs("-MFC=1");
+    BOOST_CHECK(GetBoolArg("-MFC"));
+    BOOST_CHECK(GetBoolArg("-MFC", false));
+    BOOST_CHECK(GetBoolArg("-MFC", true));
 
     // New 0.6 feature: auto-map -nosomething to !-something:
-    ResetArgs("-noBAR");
-    BOOST_CHECK(!GetBoolArg("-BAR"));
-    BOOST_CHECK(!GetBoolArg("-BAR", false));
-    BOOST_CHECK(!GetBoolArg("-BAR", true));
+    ResetArgs("-noMFC");
+    BOOST_CHECK(!GetBoolArg("-MFC"));
+    BOOST_CHECK(!GetBoolArg("-MFC", false));
+    BOOST_CHECK(!GetBoolArg("-MFC", true));
 
-    ResetArgs("-noBAR=1");
-    BOOST_CHECK(!GetBoolArg("-BAR"));
-    BOOST_CHECK(!GetBoolArg("-BAR", false));
-    BOOST_CHECK(!GetBoolArg("-BAR", true));
+    ResetArgs("-noMFC=1");
+    BOOST_CHECK(!GetBoolArg("-MFC"));
+    BOOST_CHECK(!GetBoolArg("-MFC", false));
+    BOOST_CHECK(!GetBoolArg("-MFC", true));
 
-    ResetArgs("-BAR -noBAR");  // -BAR should win
-    BOOST_CHECK(GetBoolArg("-BAR"));
-    BOOST_CHECK(GetBoolArg("-BAR", false));
-    BOOST_CHECK(GetBoolArg("-BAR", true));
+    ResetArgs("-MFC -noMFC");  // -MFC should win
+    BOOST_CHECK(GetBoolArg("-MFC"));
+    BOOST_CHECK(GetBoolArg("-MFC", false));
+    BOOST_CHECK(GetBoolArg("-MFC", true));
 
-    ResetArgs("-BAR=1 -noBAR=1");  // -BAR should win
-    BOOST_CHECK(GetBoolArg("-BAR"));
-    BOOST_CHECK(GetBoolArg("-BAR", false));
-    BOOST_CHECK(GetBoolArg("-BAR", true));
+    ResetArgs("-MFC=1 -noMFC=1");  // -MFC should win
+    BOOST_CHECK(GetBoolArg("-MFC"));
+    BOOST_CHECK(GetBoolArg("-MFC", false));
+    BOOST_CHECK(GetBoolArg("-MFC", true));
 
-    ResetArgs("-BAR=0 -noBAR=0");  // -BAR should win
-    BOOST_CHECK(!GetBoolArg("-BAR"));
-    BOOST_CHECK(!GetBoolArg("-BAR", false));
-    BOOST_CHECK(!GetBoolArg("-BAR", true));
+    ResetArgs("-MFC=0 -noMFC=0");  // -MFC should win
+    BOOST_CHECK(!GetBoolArg("-MFC"));
+    BOOST_CHECK(!GetBoolArg("-MFC", false));
+    BOOST_CHECK(!GetBoolArg("-MFC", true));
 
     // New 0.6 feature: treat -- same as -:
-    ResetArgs("--BAR=1");
-    BOOST_CHECK(GetBoolArg("-BAR"));
-    BOOST_CHECK(GetBoolArg("-BAR", false));
-    BOOST_CHECK(GetBoolArg("-BAR", true));
+    ResetArgs("--MFC=1");
+    BOOST_CHECK(GetBoolArg("-MFC"));
+    BOOST_CHECK(GetBoolArg("-MFC", false));
+    BOOST_CHECK(GetBoolArg("-MFC", true));
 
-    ResetArgs("--noBAR=1");
-    BOOST_CHECK(!GetBoolArg("-BAR"));
-    BOOST_CHECK(!GetBoolArg("-BAR", false));
-    BOOST_CHECK(!GetBoolArg("-BAR", true));
+    ResetArgs("--noMFC=1");
+    BOOST_CHECK(!GetBoolArg("-MFC"));
+    BOOST_CHECK(!GetBoolArg("-MFC", false));
+    BOOST_CHECK(!GetBoolArg("-MFC", true));
 
 }
 
 BOOST_AUTO_TEST_CASE(stringarg)
 {
     ResetArgs("");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", ""), "");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", "eleven"), "eleven");
+    BOOST_CHECK_EQUAL(GetArg("-MFC", ""), "");
+    BOOST_CHECK_EQUAL(GetArg("-MFC", "eleven"), "eleven");
 
-    ResetArgs("-BAR -bar");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", ""), "");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", "eleven"), "");
+    ResetArgs("-MFC -bar");
+    BOOST_CHECK_EQUAL(GetArg("-MFC", ""), "");
+    BOOST_CHECK_EQUAL(GetArg("-MFC", "eleven"), "");
 
-    ResetArgs("-BAR=");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", ""), "");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", "eleven"), "");
+    ResetArgs("-MFC=");
+    BOOST_CHECK_EQUAL(GetArg("-MFC", ""), "");
+    BOOST_CHECK_EQUAL(GetArg("-MFC", "eleven"), "");
 
-    ResetArgs("-BAR=11");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", ""), "11");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", "eleven"), "11");
+    ResetArgs("-MFC=11");
+    BOOST_CHECK_EQUAL(GetArg("-MFC", ""), "11");
+    BOOST_CHECK_EQUAL(GetArg("-MFC", "eleven"), "11");
 
-    ResetArgs("-BAR=eleven");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", ""), "eleven");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", "eleven"), "eleven");
+    ResetArgs("-MFC=eleven");
+    BOOST_CHECK_EQUAL(GetArg("-MFC", ""), "eleven");
+    BOOST_CHECK_EQUAL(GetArg("-MFC", "eleven"), "eleven");
 
 }
 
 BOOST_AUTO_TEST_CASE(intarg)
 {
     ResetArgs("");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", 11), 11);
-    BOOST_CHECK_EQUAL(GetArg("-BAR", 0), 0);
+    BOOST_CHECK_EQUAL(GetArg("-MFC", 11), 11);
+    BOOST_CHECK_EQUAL(GetArg("-MFC", 0), 0);
 
-    ResetArgs("-BAR -bar");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", 11), 0);
+    ResetArgs("-MFC -bar");
+    BOOST_CHECK_EQUAL(GetArg("-MFC", 11), 0);
     BOOST_CHECK_EQUAL(GetArg("-bar", 11), 0);
 
-    ResetArgs("-BAR=11 -bar=12");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", 0), 11);
+    ResetArgs("-MFC=11 -bar=12");
+    BOOST_CHECK_EQUAL(GetArg("-MFC", 0), 11);
     BOOST_CHECK_EQUAL(GetArg("-bar", 11), 12);
 
-    ResetArgs("-BAR=NaN -bar=NotANumber");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", 1), 0);
+    ResetArgs("-MFC=NaN -bar=NotANumber");
+    BOOST_CHECK_EQUAL(GetArg("-MFC", 1), 0);
     BOOST_CHECK_EQUAL(GetArg("-bar", 11), 0);
 }
 
 BOOST_AUTO_TEST_CASE(doubledash)
 {
-    ResetArgs("--BAR");
-    BOOST_CHECK_EQUAL(GetBoolArg("-BAR"), true);
+    ResetArgs("--MFC");
+    BOOST_CHECK_EQUAL(GetBoolArg("-MFC"), true);
 
-    ResetArgs("--BAR=verbose --bar=1");
-    BOOST_CHECK_EQUAL(GetArg("-BAR", ""), "verbose");
+    ResetArgs("--MFC=verbose --bar=1");
+    BOOST_CHECK_EQUAL(GetArg("-MFC", ""), "verbose");
     BOOST_CHECK_EQUAL(GetArg("-bar", 0), 1);
 }
 
 BOOST_AUTO_TEST_CASE(boolargno)
 {
-    ResetArgs("-noBAR");
-    BOOST_CHECK(!GetBoolArg("-BAR"));
-    BOOST_CHECK(!GetBoolArg("-BAR", true));
-    BOOST_CHECK(!GetBoolArg("-BAR", false));
+    ResetArgs("-noMFC");
+    BOOST_CHECK(!GetBoolArg("-MFC"));
+    BOOST_CHECK(!GetBoolArg("-MFC", true));
+    BOOST_CHECK(!GetBoolArg("-MFC", false));
 
-    ResetArgs("-noBAR=1");
-    BOOST_CHECK(!GetBoolArg("-BAR"));
-    BOOST_CHECK(!GetBoolArg("-BAR", true));
-    BOOST_CHECK(!GetBoolArg("-BAR", false));
+    ResetArgs("-noMFC=1");
+    BOOST_CHECK(!GetBoolArg("-MFC"));
+    BOOST_CHECK(!GetBoolArg("-MFC", true));
+    BOOST_CHECK(!GetBoolArg("-MFC", false));
 
-    ResetArgs("-noBAR=0");
-    BOOST_CHECK(GetBoolArg("-BAR"));
-    BOOST_CHECK(GetBoolArg("-BAR", true));
-    BOOST_CHECK(GetBoolArg("-BAR", false));
+    ResetArgs("-noMFC=0");
+    BOOST_CHECK(GetBoolArg("-MFC"));
+    BOOST_CHECK(GetBoolArg("-MFC", true));
+    BOOST_CHECK(GetBoolArg("-MFC", false));
 
-    ResetArgs("-BAR --noBAR");
-    BOOST_CHECK(GetBoolArg("-BAR"));
+    ResetArgs("-MFC --noMFC");
+    BOOST_CHECK(GetBoolArg("-MFC"));
 
-    ResetArgs("-noBAR -BAR"); // BAR always wins:
-    BOOST_CHECK(GetBoolArg("-BAR"));
+    ResetArgs("-noMFC -MFC"); // MFC always wins:
+    BOOST_CHECK(GetBoolArg("-MFC"));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
